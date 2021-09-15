@@ -24,6 +24,6 @@ func handleRequests() {
 }
 
 func main() {
-	rand.Seed(time.Now().UnixMicro())
+	rand.Seed(time.Now().UnixNano())
 	handleRequests()
 }
