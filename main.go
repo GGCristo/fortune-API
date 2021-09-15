@@ -6,6 +6,7 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -17,13 +18,10 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Take a random fortune\n")
 }
 
-func handleRequests() {
+func main() {
+	port := os.Getenv("PORT")
+	rand.Seed(time.Now().UnixNano())
 	http.HandleFunc("/", homePage)
 	http.HandleFunc("/fortune", randomCookie)
-	log.Fatal(http.ListenAndServe(":8080", nil))
-}
-
-func main() {
-	rand.Seed(time.Now().UnixNano())
-	handleRequests()
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
