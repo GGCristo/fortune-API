@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"log"
 	"math/rand"
@@ -11,7 +10,7 @@ import (
 )
 
 func randomCookie(w http.ResponseWriter, r *http.Request) {
-	json.NewEncoder(w).Encode(fortunes[rand.Intn(len(fortunes))])
+  fmt.Fprintf(w, fortunes[rand.Intn(len(fortunes))])
 }
 
 func homePage(w http.ResponseWriter, r *http.Request) {
@@ -24,4 +23,5 @@ func main() {
 	http.HandleFunc("/", homePage)
 	http.HandleFunc("/fortune", randomCookie)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
+	// log.Fatal(http.ListenAndServe(":8080", nil))
 }
