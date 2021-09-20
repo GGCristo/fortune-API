@@ -10,7 +10,7 @@ import (
 )
 
 func randomCookie(w http.ResponseWriter, r *http.Request) {
-  fmt.Fprintf(w, fortunes[rand.Intn(len(fortunes))])
+	fmt.Fprintf(w, fortunes[rand.Intn(len(fortunes))])
 }
 
 func homePage(w http.ResponseWriter, r *http.Request) {
